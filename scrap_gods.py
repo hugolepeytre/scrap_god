@@ -24,7 +24,7 @@ def main():
     found_urls = flatten([collect_urls(g_l) for g_l in god_lists])
     # Filter out some garbage and repetitions
     god_urls = set(filter(lambda url: 'mythology' in url and 'list-of-names' not in url, found_urls))
-    print(f"{len(god_urls)} gods found, coherent with site headline")  # Should be 3886
+    print(f"{len(god_urls)} gods found, coherent with site headline")  # Should be 3890
 
     print("Starting to scrape all god pages. Takes about 10 minutes...")
     god_soups = get_soups(session, list(god_urls))
