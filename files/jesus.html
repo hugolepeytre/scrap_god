@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"centrality": 0.1277007689198373, "color": "#A298C6", "degree": 2, "id": "Simeon of Jerusalem", "label": "Simeon of Jerusalem", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1525170190422652, "color": "#A298C6", "degree": 44, "id": "Jesus", "label": "Jesus", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.139655509227507, "color": "#47C049", "degree": 7, "id": "Allah", "label": "Allah", "pantheon": "Middle Eastern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.14723712223828433, "color": "#47C049", "degree": 12, "id": "God", "label": "God", "pantheon": "Middle Eastern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1615893160590746, "color": "#A298C6", "degree": 21, "id": "Jehovah", "label": "Jehovah", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.15062112692574983, "color": "#47C049", "degree": 15, "id": "Yahweh", "label": "Yahweh", "pantheon": "Middle Eastern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1277007689198373, "color": "#A298C6", "degree": 2, "id": "Veronica", "label": "Veronica", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Athanasius", "label": "Athanasius", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12772013659541476, "color": "#64E7F3", "degree": 2, "id": "Esus", "label": "Esus", "pantheon": "Gaulish pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1277007689198373, "color": "#A298C6", "degree": 2, "id": "Stephen", "label": "Stephen", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13053130599734436, "color": "#A298C6", "degree": 2, "id": "Joseph", "label": "Joseph", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1358700743210499, "color": "#A298C6", "degree": 2, "id": "Holy Spirit", "label": "Holy Spirit", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12772982263641244, "color": "#A298C6", "degree": 4, "id": "Jude", "label": "Jude", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1277782748868625, "color": "#A298C6", "degree": 3, "id": "John", "label": "John", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12837236595150414, "color": "#A298C6", "degree": 2, "id": "Ignatius of Loyola", "label": "Ignatius of Loyola", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12771045202333442, "color": "#A298C6", "degree": 2, "id": "Matthew", "label": "Matthew", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13054142313468722, "color": "#A298C6", "degree": 3, "id": "Anne", "label": "Anne", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13309984520971507, "color": "#A298C6", "degree": 8, "id": "Peter", "label": "Peter", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12772013659541476, "color": "#A298C6", "degree": 3, "id": "Judas Iscariot", "label": "Judas Iscariot", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Christopher", "label": "Christopher", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13591393167234783, "color": "#5F4465", "degree": 3, "id": "Eostre", "label": "Eostre", "pantheon": "Germanic pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "John Gualbert", "label": "John Gualbert", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Hyacintha Mariscotti", "label": "Hyacintha Mariscotti", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Zdislava Berka", "label": "Zdislava Berka", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Lutgarde", "label": "Lutgarde", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1277782748868625, "color": "#A298C6", "degree": 4, "id": "John the Baptist", "label": "John the Baptist", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12769108728458942, "color": "#A298C6", "degree": 2, "id": "Martha", "label": "Martha", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1286370916736985, "color": "#4A4CAB", "degree": 4, "id": "Saoshyant", "label": "Saoshyant", "pantheon": "Zoroastrian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.16216497605273775, "color": "#47C049", "degree": 23, "id": "Satan", "label": "Satan", "pantheon": "Middle Eastern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13957449583854598, "color": "#A298C6", "degree": 17, "id": "Mary", "label": "Mary", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13054142313468722, "color": "#A298C6", "degree": 3, "id": "Mary Magdalene", "label": "Mary Magdalene", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Paschal Bayl\u00f3n", "label": "Paschal Bayl\u00f3n", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13053130599734436, "color": "#A298C6", "degree": 2, "id": "Dismas", "label": "Dismas", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Longinus", "label": "Longinus", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1277782748868625, "color": "#A298C6", "degree": 2, "id": "Luke", "label": "Luke", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#2F16C8", "degree": 1, "id": "Cerklicing", "label": "Cerklicing", "pantheon": "Latvian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13053130599734436, "color": "#A298C6", "degree": 2, "id": "Catherine Laboure", "label": "Catherine Laboure", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1284898871897875, "color": "#A298C6", "degree": 3, "id": "Matthias", "label": "Matthias", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1277007689198373, "color": "#A298C6", "degree": 2, "id": "James the Great", "label": "James the Great", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.1361886828886338, "color": "#A298C6", "degree": 11, "id": "Paul", "label": "Paul", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.14494366964576028, "color": "#A603C2", "degree": 16, "id": "Daksha", "label": "Daksha", "pantheon": "Hindu pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Bartholomew", "label": "Bartholomew", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Dunstan", "label": "Dunstan", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Thomas", "label": "Thomas", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12768140711725678, "color": "#A298C6", "degree": 1, "id": "Philip", "label": "Philip", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "Simeon of Jerusalem", "label": 1, "to": "Jesus", "weight": 1}, {"from": "Allah", "label": 1, "to": "God", "weight": 1}, {"from": "Allah", "label": 1, "to": "Jehovah", "weight": 1}, {"from": "Allah", "label": 1, "to": "Jesus", "weight": 1}, {"from": "Allah", "label": 1, "to": "Yahweh", "weight": 1}, {"from": "Veronica", "label": 1, "to": "Jesus", "weight": 1}, {"from": "Athanasius", "label": 1, "to": "Jesus", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Yahweh", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Esus", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Stephen", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Joseph", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Holy Spirit", "weight": 1}, {"from": "Jesus", "label": 1, "to": "God", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Jude", "weight": 1}, {"from": "Jesus", "label": 1, "to": "John", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Ignatius of Loyola", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Matthew", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Anne", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Peter", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Judas Iscariot", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Christopher", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Eostre", "weight": 1}, {"from": "Jesus", "label": 1, "to": "John Gualbert", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Hyacintha Mariscotti", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Zdislava Berka", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Lutgarde", "weight": 1}, {"from": "Jesus", "label": 1, "to": "John the Baptist", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Martha", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Saoshyant", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Jehovah", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Satan", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Mary", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Mary Magdalene", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Paschal Bayl\u00f3n", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Dismas", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Longinus", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Luke", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Cerklicing", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Catherine Laboure", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Matthias", "weight": 1}, {"from": "Jesus", "label": 1, "to": "James the Great", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Paul", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Daksha", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Bartholomew", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Dunstan", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Thomas", "weight": 1}, {"from": "Jesus", "label": 1, "to": "Philip", "weight": 1}, {"from": "Holy Spirit", "label": 1, "to": "Jehovah", "weight": 1}, {"from": "Anne", "label": 1, "to": "Mary", "weight": 1}, {"from": "Matthias", "label": 1, "to": "Peter", "weight": 1}, {"from": "Matthias", "label": 1, "to": "Judas Iscariot", "weight": 1}, {"from": "Mary Magdalene", "label": 1, "to": "Martha", "weight": 1}, {"from": "Mary Magdalene", "label": 1, "to": "Mary", "weight": 1}, {"from": "Joseph", "label": 1, "to": "Mary", "weight": 1}, {"from": "Judas Iscariot", "label": 1, "to": "Jude", "weight": 1}, {"from": "Yahweh", "label": 1, "to": "Satan", "weight": 1}, {"from": "Yahweh", "label": 1, "to": "God", "weight": 1}, {"from": "Yahweh", "label": 1, "to": "Jehovah", "weight": 1}, {"from": "Paul", "label": 1, "to": "Jehovah", "weight": 1}, {"from": "Paul", "label": 1, "to": "Luke", "weight": 1}, {"from": "Paul", "label": 1, "to": "Peter", "weight": 1}, {"from": "Eostre", "label": 1, "to": "Jehovah", "weight": 1}, {"from": "Jehovah", "label": 1, "to": "God", "weight": 1}, {"from": "Jehovah", "label": 1, "to": "Satan", "weight": 1}, {"from": "Dismas", "label": 1, "to": "Mary", "weight": 1}, {"from": "Ignatius of Loyola", "label": 1, "to": "God", "weight": 1}, {"from": "Mary", "label": 1, "to": "Catherine Laboure", "weight": 1}, {"from": "Satan", "label": 1, "to": "God", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

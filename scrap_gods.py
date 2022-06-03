@@ -38,7 +38,7 @@ def main():
     columns = list(set(flatten([entry.keys() for entry in god_entries])))
 
     # Writing scaped data to disk as csv
-    with open('gods.csv', 'w', encoding='utf-8') as file:
+    with open('files/gods.csv', 'w+', encoding='utf-8') as file:
         w = csv.DictWriter(file, fieldnames=columns)
         w.writeheader()
         w.writerows(god_entries)
