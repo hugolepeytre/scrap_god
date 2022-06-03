@@ -2,13 +2,16 @@
 
 ## Requirements
 
-Requirements are listed in [requirements.txt](requirements.txt). The other requirement is to be able to run Jupyter Notebooks.
+Required Python packages and versions are listed in [requirements.txt](requirements.txt) (install with `pip install -r requirements.txt`). The other requirement is to be able to run Jupyter Notebooks.
 
 ## How to run
 
-Since the CSV file and visualisations are already generated, there is no need to actually run the code, expect to check that it works. To do that, there are 2 important files :
+Since the CSV file and visualisations are already generated, there is no need to actually run the code, expect to check that it works. The evaluated files are [gods.csv](gods.csv) where the scraped data is stored, and [visualisation.ipynb](visualisation.ipynb) where the data visualisation is done (open with `jupyter-notebook visualisation.ipynb`).
+
+
+To actually run the code, there are 2 important files :
 - [scrap_gods.py](scrap_gods.py) generates the csv file (gods.csv). It runs in about 10 minutes, 99% of the time being taken to fetch god pages. Run with `python scrap_gods.py`
-- [visualisation.ipynb](visualisation.ipynb) is a Jupyter notebook (already evaluated) which contains the data exploration and insights. Simply open it using jupyter-notebook and run all the cells
+- [visualisation.ipynb](visualisation.ipynb) is a Jupyter notebook (already evaluated) which contains the data exploration and insights. Open with `jupyter-notebook visualisation.ipynb` and run all cells
 
 
 ## Scraping
