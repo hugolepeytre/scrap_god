@@ -38,4 +38,4 @@ I also added some functions in [visualisation.ipynb](visualisation.ipynb) to all
 
 ## Visualisation
 
-Use pandas
+I used pandas with plotly in the first part, and networkx with pyvis in the second part to generate some insights into the dataset. Choices and results are displayed and commented directly in the notebook
