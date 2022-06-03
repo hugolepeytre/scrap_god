@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"centrality": 0.00036469730123997083, "color": "#6BA1BD", "degree": 1, "id": "Neteraantmwmw", "label": "Neteraantmwmw", "pantheon": "Egyptian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.00036469730123997083, "color": "#6CB3FE", "degree": 1, "id": "Flying Spaghetti Monster", "label": "Flying Spaghetti Monster", "pantheon": "Modern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12155351048525796, "color": "#895EFA", "degree": 5, "id": "Wild Hunt", "label": "Wild Hunt", "pantheon": "Germanic pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12976696519637373, "color": "#6CB3FE", "degree": 6, "id": "Santa Claus", "label": "Santa Claus", "pantheon": "Modern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.08722592787217019, "color": "#6CB3FE", "degree": 2, "id": "Mao Zedong", "label": "Mao Zedong", "pantheon": "Modern pantheon", "shape": "dot", "size": 10}, {"centrality": 0.09604501832138085, "color": "#A0E9AC", "degree": 2, "id": "Mandate of Heaven", "label": "Mandate of Heaven", "pantheon": "Chinese pantheon", "shape": "dot", "size": 10}, {"centrality": 0.09756389047579996, "color": "#A0E9AC", "degree": 2, "id": "Li Si", "label": "Li Si", "pantheon": "Chinese pantheon", "shape": "dot", "size": 10}, {"centrality": 0.12061339453478477, "color": "#895EFA", "degree": 3, "id": "Sinterklaas", "label": "Sinterklaas", "pantheon": "Germanic pantheon", "shape": "dot", "size": 10}, {"centrality": 0.11135507049809813, "color": "#628132", "degree": 3, "id": "Nicholas", "label": "Nicholas", "pantheon": "Christian pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13934354606467564, "color": "#895EFA", "degree": 4, "id": "Krampus", "label": "Krampus", "pantheon": "Germanic pantheon", "shape": "dot", "size": 10}, {"centrality": 0.13824554225426697, "color": "#B65F25", "degree": 8, "id": "Saturnus", "label": "Saturnus", "pantheon": "Roman pantheon", "shape": "dot", "size": 10}, {"centrality": 0.11134770866612022, "color": "#371895", "degree": 2, "id": "Joulupukki", "label": "Joulupukki", "pantheon": "Finnish pantheon", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "Neteraantmwmw", "label": 1, "to": "Flying Spaghetti Monster", "weight": 1}, {"from": "Wild Hunt", "label": 1, "to": "Santa Claus", "weight": 1}, {"from": "Mao Zedong", "label": 1, "to": "Mandate of Heaven", "weight": 1}, {"from": "Mao Zedong", "label": 1, "to": "Li Si", "weight": 1}, {"from": "Sinterklaas", "label": 1, "to": "Santa Claus", "weight": 1}, {"from": "Sinterklaas", "label": 1, "to": "Nicholas", "weight": 1}, {"from": "Sinterklaas", "label": 1, "to": "Krampus", "weight": 1}, {"from": "Santa Claus", "label": 1, "to": "Saturnus", "weight": 1}, {"from": "Santa Claus", "label": 1, "to": "Krampus", "weight": 1}, {"from": "Santa Claus", "label": 1, "to": "Nicholas", "weight": 1}, {"from": "Santa Claus", "label": 1, "to": "Joulupukki", "weight": 1}, {"from": "Nicholas", "label": 1, "to": "Joulupukki", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
